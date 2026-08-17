@@ -2,15 +2,16 @@
 int main()
 {
     int x;
-    double sum=0;
-    int count=0;
-    scanf("%d", &x);
-    while(x!=-1)
+    int y=0;
+    int temp=0;
+    scanf("%d",&x);
+    while(x>0)
     {
-    sum+=x;
-    count++;
-    scanf("%d", &x);
+        temp=x%10;
+        printf("%d", temp);//这是输出700时显示倒叙值为007的代码
+   //     x/=10;           //注释内容为输出700时显示倒叙值为7的代码
+   //     y=y*10+temp;
     }
-    printf("averge=%.1f,add number=%d", sum/count, count);
+   //  printf("%d\n", y);
     return 0;
 } 
