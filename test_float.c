@@ -1,27 +1,16 @@
 #include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
 int main()
 {
-    srand(time(0));
-    int number=rand()%100+1;
+    int x;
+    double sum=0;
     int count=0;
-    int a=0;
-    printf("guess a number between 1 and 100\n");
-    do
+    scanf("%d", &x);
+    while(x!=-1)
     {
-        scanf("%d",&a);
-        count++;
-        if(a>number)
-        {
-            printf("high\n");
-        }
-        else if(a<number)
-        {
-            printf("low\n");
-        }
+    sum+=x;
+    count++;
+    scanf("%d", &x);
     }
-    while(a!=number);
-    printf("this is right number,the number is %d,the count is %d\n",number,count);
+    printf("averge=%.1f,add number=%d", sum/count, count);
     return 0;
 } 
