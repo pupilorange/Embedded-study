@@ -2,32 +2,42 @@
 int main()
 {
 
-    int A,i=0,cnt=0,x=0,y=0;
-    scanf("%d",&A);
-    int max=A+4;
-    for(i=A;i<max;i++)
-    {
-        for(x=A;x<max;x++)
+   int N;
+   scanf("%d",&N);
+   int number=1,min=0,max=0;
+   int reminder=0,dividend=0;
+   int compare=0,cnt=N;
+
+   while(N!=1)
+   {
+        number*=10;
+        N--;
+   }//计算N位数的范围；
+   max=number*10;
+   for(min=number;min<max;min++)
+   {
+        int sum=0;
+        compare=min;
+        dividend=min;
+        while(dividend>0)
         {
-            for(y=A;y<max;y++)
+            int temp=1;
+            int temp_cnt=cnt;
+            reminder=dividend%10;
+            dividend/=10;
+            while(temp_cnt>0)
             {
-                if(x!=i&&y!=i&&y!=x)
-                {
-                    printf("%d%d%d",i,x,y);
-                    cnt++;
-                    if(cnt<6)
-                    {
-                        printf(" ");
-                    }    
-                    else
-                    {
-                        printf("\n");
-                        cnt=0;
-                    }
-                }
-            }
+                temp*=reminder;
+                temp_cnt--;
+            }//计算数的N次幂
+            sum+=temp;
         }
-    }
+        if(sum==compare)
+        {
+            printf("%d\n",compare);
+        }
+   }
+
 
     return 0;
 } 
