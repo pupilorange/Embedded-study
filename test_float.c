@@ -2,28 +2,32 @@
 int main()
 {
 
-    int x;
-    int t;
-    int digit=1;
-    scanf("%d", &x);
-    t=x;
-    while(t>9)
+    int A,i=0,cnt=0,x=0,y=0;
+    scanf("%d",&A);
+    int max=A+4;
+    for(i=A;i<max;i++)
     {
-        t/=10;
-        digit*=10;
-    }
-    do
-    {
-        int temp=x/digit;
-        printf("%d",temp);
-        if(digit>9)
+        for(x=A;x<max;x++)
         {
-            printf(" ");
+            for(y=A;y<max;y++)
+            {
+                if(x!=i&&y!=i&&y!=x)
+                {
+                    printf("%d%d%d",i,x,y);
+                    cnt++;
+                    if(cnt<6)
+                    {
+                        printf(" ");
+                    }    
+                    else
+                    {
+                        printf("\n");
+                        cnt=0;
+                    }
+                }
+            }
         }
-        x%=digit;
-        digit/=10;
     }
-    while(digit>0);
-    
+
     return 0;
 } 
