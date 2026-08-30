@@ -1,62 +1,35 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+//在管理 C 语言中的内存时，请遵循最佳实践：
+//1.记住检查错误（NULL 返回值）以确定内存分配是否成功
+//2.防止内存泄漏 - 始终记住释放不再使用的内存，否则程序可能会性能下降，甚至更糟，如果内存耗尽，程序可能会崩溃
+//3.释放内存后将指针设置为 NULL，以防止意外继续使用它
+
 int main()
 {
+    int *ptr;
+    ptr = malloc(sizeof(*ptr)); // 为一个整数分配内存 
 
-    int m,n;
-    scanf("%d %d",&m,&n);
-    int number,cnt=0,sum=0;
-    int prime_number;
-    for(number=m;number<=n;number++)//依次提供[m,n]中的所有数字
-    {
-        if(number==1)
-        {
-            continue;//若m=1,因为1不是素数，因此除去1
-        }
-        else
-        {
-            for(prime_number=2;prime_number<=number;prime_number++)//依次提供[2,number]中的所有数字
-            {
-                if(number%prime_number==0&&prime_number!=number)//判断[2,number)是否有数字可以整除number
-                {
-                    break;//找到第一个可以整除number的数字，说明number不是素数，进入下一个number的判断
-                }
-                else if(prime_number==number)
-                {
-                    sum+=number;//直到prime_number=number都没有退出这层循环，说明number是素数
-                    cnt++;
-                }
-                //将[2,m]中的数依次对[m,n]中依次取出的数求余数
-            }
-        }  
+    // 如果无法分配内存，打印消息并结束 main() 函数 
+    if (ptr == NULL) {
+        printf("无法分配内存");
+        return 1;
     }
-    printf("%d %d\n",cnt,sum);
-    
-    //int m,n;
-    // scanf("%d %d",&m,&n); 
-    // int cnt=0,sum=0,i;
-    // if(m==1)
-    // {
-    //     m=2;
-    // }
-    // for(i=m;i<=n;i++)
-    // {
-    //     int k;
-    //     int is_Prime=1;        //使用变量判断表示是否为素数
-    //     for(k=2;k<i-1;k++)     //任意自然数i>2,因为i和i-1是连续的自然数，最大公约数为1，i-1不可能是i的因数，因此无需遍历到i-1
-    //     {
-    //         if(i%k==0)
-    //         {
-    //             is_Prime=0;
-    //             break;
-    //         }
-    //     }
-    //     if(is_Prime)
-    //     {
-    //         cnt++;
-    //         sum+=i;
-    //     }
-    // }
-    // printf("%d %d\n",cnt,sum);
+
+    // 设置整数值 
+    *ptr = 20;
+
+    // 打印整数值 
+    printf("整数值: %d\n", *ptr);
+
+    // 释放分配的内存 
+    free(ptr);
+
+    // 将指针设为 NULL 以防止意外使用 
+    ptr = NULL; 
 
     return 0;
 } 
+
+
